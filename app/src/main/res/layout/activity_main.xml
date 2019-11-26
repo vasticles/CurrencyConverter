@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout>
+
+    <data>
+
+        <variable
+            name="vm"
+            type="com.paypay.currencyconverter.ui.main.MainViewModel" />
+        <variable
+            name="index"
+            type="int" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="16dp"
+        tools:context=".ui.main.MainActivity">
+
+        <EditText
+            android:id="@+id/edittext_amount"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Enter amount"
+            android:text="@={vm.amount}"
+            android:inputType="numberDecimal"
+            android:gravity="end"
+            app:layout_constraintBottom_toTopOf="@id/spinner_currencies"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <androidx.appcompat.widget.AppCompatSpinner
+            android:id="@+id/spinner_currencies"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:entries="@{vm.currencies}"
+            android:selectedItemPosition="@={vm.selectedCurrencyIndex}"
+            app:layout_constraintBottom_toTopOf="@id/rv_rates"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/edittext_amount" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rv_rates"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginTop="8dp"
+            app:items="@{vm.rates}"
+            app:layout_constraintBottom_toTopOf="@id/button_convert"
+            app:layout_constraintTop_toBottomOf="@id/spinner_currencies" />
+
+        <Button
+            android:id="@+id/button_convert"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="Convert"
+            android:onClick="@{() -> vm.convert()}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/rv_rates" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

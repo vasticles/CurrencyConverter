@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">Currency Converter</string>
+    <string name="converted_amount">%.2f</string>
+    <string name="converted_currency">%1$s (%2$s)</string>
+</resources>
